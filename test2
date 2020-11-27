@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+mkdir /backup
+for ip in `seq 153 154`
+do 
+	ssh root@192.168.152.$ip 'bash -s' < /root/test1.sh
+	scp -rp root@192.168.152.$ip:/*"$(date '+%F').tar.gz" /backup/
+	ssh root@192.168.152.$ip rm -rf /"`hostname`$(date '+%F').tar.gz"
+done
+

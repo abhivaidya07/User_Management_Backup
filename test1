@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+mkdir /backup
+find /home -type f -mmin -60 -exec cp -up {} /backup \;
+tar -jcf /"`hostname`$(date '+%F').tar.gz" /backup/*
+rm -rf /backup
+

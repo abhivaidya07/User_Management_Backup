@@ -1,0 +1,7 @@
+#!/usr/bin/expect -f
+for {set i 154} {$i < 155} {incr i} {
+spawn ssh-copy-id root@192.168.152.$i
+expect "Are you sure you want to continue connecting (yes/no)?" {send "yes\r"}
+expect "password:" {send "redhat\r"}
+expect eof
+}
